@@ -6,7 +6,7 @@
 #    By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 15:45:18 by ezanotti          #+#    #+#              #
-#    Updated: 2022/12/02 15:46:22 by ezanotti         ###   ########lyon.fr    #
+#    Updated: 2022/12/02 16:11:32 by ezanotti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ S_LIB	= ${DIR}ft_isalpha.c ${DIR}ft_isdigit.c ${DIR}ft_isalnum.c \
 		${DIR}ft_putnbr_fd.c ${DIR}ft_lstnew.c ${DIR}ft_lstadd_front.c \
 		${DIR}ft_lstsize.c ${DIR}ft_lstlast.c ${DIR}ft_lstadd_back.c \
 		${DIR}ft_lstdelone.c ${DIR}ft_lstclear.c ${DIR}ft_lstiter.c \
-		${DIR}ft_lstmap.c
+		${DIR}ft_lstmap.c ${DIR}ft_printf.c ${DIR}ft_printf_utils.c
 
-OBJS	= ${S_LIB:.c=.o}
+S_SRC	= ${DIR_SRC}main.c
+
+OBJS	= ${S_LIB:.c=.o} ${S_SRC:.c=.o}
 
 # VARIABLES
-NAME	= fdf
+NAME	= pipex
 DIR		= libft/
 DIR_SRC = srcs/
 CC		= cc
@@ -40,8 +42,8 @@ RM		= rm -rf
 # COMPILATION
 all :		${NAME}
 
-%.o: %.c	${DIR}libft.h ${DIR_SRC}fdf.h Makefile
-			${CC} ${CFLAGS} -I ${DIR} -I mlx -I ${DIR_SRC} -c $< -o ${<:.c=.o} 
+%.o: %.c	${DIR}libft.h ${DIR_SRC}pipex.h Makefile
+			${CC} ${CFLAGS} -I ${DIR} -I ${DIR_SRC} -c $< -o ${<:.c=.o} 
 
 ${NAME}:	${OBJS}
 			${CC} ${OBJS} -o ${NAME} ${MLX}
