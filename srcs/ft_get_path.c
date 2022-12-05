@@ -6,11 +6,22 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:36:27 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 15:55:39 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 18:18:07 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*str;
+
+	str = ft_strjoin(s1, s2);
+	if (!str)
+		return (free(s1), NULL);
+	free(s1);
+	return (str);
+}
 
 char	*ft_get_path(t_args *args, char *cmd)
 {
@@ -26,7 +37,7 @@ char	*ft_get_path(t_args *args, char *cmd)
 		return (NULL);
 	while (*paths)
 	{
-		good_path = ft_strjoin(*paths++, ft_strjoin("/", cmd));	// ATTENTION LEAKS
+		good_path = ft_strjoin_free(*paths++, ft_strjoin_free("/", cmd));	// ATTENTION LEAKS
 		if (access(good_path, F_OK) == 0)
 			return (good_path);
 	}

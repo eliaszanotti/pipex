@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_stdout_to_file.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 17:55:52 by ezanotti         ###   ########lyon.fr   */
+/*   Created: 2022/12/05 15:59:23 by ezanotti          #+#    #+#             */
+/*   Updated: 2022/12/05 17:55:02 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-#include <unistd.h>
-
-int	main(int argc, char **argv, char **envp)
+int	ft_stdout_to_file(t_args *args)
 {
-	t_args	*args;
+	int	fd;
 
-	if (argc != 5)
-		return ft_printf("Please enter 4 args !\n");
-	args = ft_struct_init(argv, envp);
-	if (!args)
-		return (0);
-	if (ft_file_to_stdin(args) != 0)
-		return (-1);
-	if (ft_stdout_to_file(args) != 0)
-		return (-1);
+	fd = open(args->file2, O_RDONLY | O_WRONLY | O_TRUNC, 0600);
+
+	if (fork() == 0)
+	{
+		if (dup2(fd, STDOUT_FILENO) == -1)
+			return (-1);
+		close(fd);
+		execve(args->tab_cmd2[0], args->tab_cmd2, args->envp);
+	}
+	else
+		close(fd);
 	return (0);
 }
