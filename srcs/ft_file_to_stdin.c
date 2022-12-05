@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:09:47 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 19:50:21 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 19:54:32 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	ft_file_to_stdin(t_args *args, int *fd)
 	close(fd[0]);
 	if (execve(args->tab_cmd1[0], args->tab_cmd1, args->envp) == -1)
 		return (-1);
-
 	return (0);
 }

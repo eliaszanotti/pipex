@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:36:27 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 19:11:35 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 19:57:02 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 	if (!str)
 		return (free(s1), NULL);
 	/*if (s1)
-		free(s1);*/
+		free(s1);  // TODO : leaks*/
 	return (str);
 }
 

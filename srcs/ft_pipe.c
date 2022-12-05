@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 19:51:43 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 19:57:16 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_pipe(t_args *args)
 {
-	(void)args;
-
 	int	fd[2];
 	int	pid_child;
 	int	pid_parent;
