@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:59:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 17:55:02 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 18:21:58 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_stdout_to_file(t_args *args)
 	int	fd;
 
 	fd = open(args->file2, O_RDONLY | O_WRONLY | O_TRUNC, 0600);
-
 	if (fork() == 0)
 	{
 		if (dup2(fd, STDOUT_FILENO) == -1)

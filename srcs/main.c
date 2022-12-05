@@ -6,20 +6,18 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 17:55:52 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 18:23:30 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-#include <unistd.h>
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_args	*args;
 
 	if (argc != 5)
-		return ft_printf("Please enter 4 args !\n");
+		return (ft_printf("Please enter 4 args !\n"));
 	args = ft_struct_init(argv, envp);
 	if (!args)
 		return (0);

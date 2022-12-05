@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 10:09:47 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 17:56:30 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 18:22:42 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_file_to_stdin(t_args *args)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(args->file1, O_RDONLY);
 	if (fork() == 0)
 	{
