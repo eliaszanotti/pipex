@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 11:58:33 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 15:54:38 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		return ft_printf("Please enter 4 args !\n");
-
- 
-
-
-
 	args = ft_struct_init(argv, envp);
+	if (!args)
+		return (0);
 
-	ft_display(args);
+	ft_file_to_stdin(args);
 
 
   	//execve(args->cmd1, , NULL);

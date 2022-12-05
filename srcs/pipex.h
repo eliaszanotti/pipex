@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 14:37:04 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/05 15:49:09 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ typedef struct s_args
 }	t_args;
 
 
+void	ft_file_to_stdin(t_args *args);
 char	*ft_get_path(t_args *args, char *cmd);
-t_args	*ft_struct_init(char **argv, char **envp);
-void	ft_display(t_args *args);
 int     main(int argc, char **argv, char **envp);
+t_args	*ft_struct_init(char **argv, char **envp);
+
+
 
 #endif
