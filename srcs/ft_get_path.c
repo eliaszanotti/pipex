@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_get_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 11:58:33 by ezanotti         ###   ########lyon.fr   */
+/*   Created: 2022/12/05 14:36:27 by ezanotti          #+#    #+#             */
+/*   Updated: 2022/12/05 14:36:42 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-#include <unistd.h>
-
-int	main(int argc, char **argv, char **envp)
+char	*ft_get_path(t_args *args, char *cmd)
 {
-	t_args	*args;
+	char	**paths;
+	char	*good_path;
+	int		i;
 
-	if (argc != 5)
-		return ft_printf("Please enter 4 args !\n");
-
- 
-
-
-
-	args = ft_struct_init(argv, envp);
-
-	ft_display(args);
-
-
-  	//execve(args->cmd1, , NULL);
-	return (0);
+	i = 0;
+	while (!ft_strnstr(args->envp[i], "PATH", 4))
+		i++;
+	paths = ft_split(args->envp[i] + 5, ':');
+	if (!paths)
+		return (NULL);
+	while (*paths)
+	{
+		good_path = ft_strjoin(*paths++, ft_strjoin("/", cmd));
+		if (access(good_path, F_OK) == 0)
+			return (good_path);
+	}
+	return (NULL);
 }

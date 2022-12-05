@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_display.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 11:58:33 by ezanotti         ###   ########lyon.fr   */
+/*   Created: 2022/12/05 10:09:47 by ezanotti          #+#    #+#             */
+/*   Updated: 2022/12/05 14:42:48 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-#include <unistd.h>
-
-int	main(int argc, char **argv, char **envp)
+void	ft_display(t_args *args)
 {
-	t_args	*args;
 
-	if (argc != 5)
-		return ft_printf("Please enter 4 args !\n");
-
- 
+	printf("%s, %s\n", args->tab_cmd1[0], args->tab_cmd2[0]);
 
 
-
-	args = ft_struct_init(argv, envp);
-
-	ft_display(args);
-
-
-  	//execve(args->cmd1, , NULL);
-	return (0);
+	execve(args->tab_cmd1[0], args->tab_cmd1, args->envp);
+	perror("execve");
+	execve(args->tab_cmd2[0], args->tab_cmd2, NULL);
+	perror("execve");
 }

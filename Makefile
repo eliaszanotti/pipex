@@ -6,7 +6,7 @@
 #    By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 15:45:18 by ezanotti          #+#    #+#              #
-#    Updated: 2022/12/02 16:11:32 by ezanotti         ###   ########lyon.fr    #
+#    Updated: 2022/12/05 14:38:41 by ezanotti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ S_LIB	= ${DIR}ft_isalpha.c ${DIR}ft_isdigit.c ${DIR}ft_isalnum.c \
 		${DIR}ft_lstdelone.c ${DIR}ft_lstclear.c ${DIR}ft_lstiter.c \
 		${DIR}ft_lstmap.c ${DIR}ft_printf.c ${DIR}ft_printf_utils.c
 
-S_SRC	= ${DIR_SRC}main.c
+S_SRC	= ${DIR_SRC}ft_struct_init.c ${DIR_SRC}ft_display.c ${DIR_SRC}main.c \
+		  ${DIR_SRC}ft_get_path.c
 
 OBJS	= ${S_LIB:.c=.o} ${S_SRC:.c=.o}
 
@@ -36,7 +37,7 @@ NAME	= pipex
 DIR		= libft/
 DIR_SRC = srcs/
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g3
 RM		= rm -rf
 
 # COMPILATION
