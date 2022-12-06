@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 12:01:12 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/06 12:06:25 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/06 16:26:45 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	ft_file_to_stdin(t_args *args, int *fd)
 		return (-1);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		return (-1);
-	dup2(filein, STDIN_FILENO);
+	if (dup2(filein, STDIN_FILENO) == -1)
+		return (-1);
 	close(fd[0]);
 	if (execve(args->tab_cmd1[0], args->tab_cmd1, args->envp) == -1)
 		return (-1);
@@ -37,7 +38,8 @@ int	ft_stdout_to_file(t_args *args, int *fd)
 		return (-1);
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		return (-1);
-	dup2(fileout, STDOUT_FILENO);
+	if (dup2(fileout, STDOUT_FILENO) == -1)
+		return (-1);
 	close(fd[1]);
 	if (execve(args->tab_cmd2[0], args->tab_cmd2, args->envp) == -1)
 		return (-1);
