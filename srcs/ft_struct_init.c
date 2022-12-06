@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:10:20 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 18:23:03 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/06 14:59:40 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ t_args	*ft_struct_init(char **argv, char **envp)
 	args->tab_cmd1[0] = ft_get_path(args, args->tab_cmd1[0]);
 	args->tab_cmd2[0] = ft_get_path(args, args->tab_cmd2[0]);
 	if (!args->tab_cmd1[0] || !args->tab_cmd2[0])
-		return (0);
+		return (NULL);
 	return (args);
 }

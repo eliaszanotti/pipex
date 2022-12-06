@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/05 19:50:43 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/06 14:56:50 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int		ft_pipe(t_args *args);
 char	*ft_get_path(t_args *args, char *cmd);
 int		main(int argc, char **argv, char **envp);
 t_args	*ft_struct_init(char **argv, char **envp);
+void	ft_free_args(t_args *args);
 
 #endif

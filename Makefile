@@ -6,7 +6,7 @@
 #    By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/02 15:45:18 by ezanotti          #+#    #+#              #
-#    Updated: 2022/12/05 19:05:42 by ezanotti         ###   ########lyon.fr    #
+#    Updated: 2022/12/06 14:53:51 by ezanotti         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,9 @@ S_LIB	= ${DIR}ft_isalpha.c ${DIR}ft_isdigit.c ${DIR}ft_isalnum.c \
 		${DIR}ft_lstdelone.c ${DIR}ft_lstclear.c ${DIR}ft_lstiter.c \
 		${DIR}ft_lstmap.c ${DIR}ft_printf.c ${DIR}ft_printf_utils.c
 
-S_SRC	= ${DIR_SRC}ft_struct_init.c ${DIR_SRC}ft_file_to_stdin.c \
-		  ${DIR_SRC}main.c ${DIR_SRC}ft_get_path.c \
-		  ${DIR_SRC}ft_stdout_to_file.c ${DIR_SRC}ft_pipe.c
+S_SRC	= ${DIR_SRC}ft_struct_init.c ${DIR_SRC}ft_conversion.c \
+		  ${DIR_SRC}main.c ${DIR_SRC}ft_get_path.c ${DIR_SRC}ft_pipe.c \
+		  ${DIR_SRC}ft_free_args.c
 
 OBJS	= ${S_LIB:.c=.o} ${S_SRC:.c=.o}
 
