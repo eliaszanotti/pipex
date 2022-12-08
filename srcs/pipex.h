@@ -38,5 +38,6 @@ char	*ft_get_path(t_args *args, char *cmd);
 int		main(int argc, char **argv, char **envp);
 t_args	*ft_struct_init(char **argv, char **envp);
 void	ft_free_args(t_args *args);
+void	ft_error(void);
 
 #endif

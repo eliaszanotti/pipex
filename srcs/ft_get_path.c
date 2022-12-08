@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:36:27 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/06 14:59:08 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/08 14:16:14 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ char	*ft_get_path(t_args *args, char *cmd)
 	good_path = NULL;
 	while (paths[i])
 	{
+		free(good_path);
 		good_path = ft_pathjoin(paths[i++], cmd);
 		if (access(good_path, F_OK) == 0)
 			break ;
-		free(good_path);
 	}
 	i = 0;
 	while (paths[i])
