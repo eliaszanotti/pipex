@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/08 14:05:26 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/08 17:00:14 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ int	ft_pipe(t_args *args)
 	if (pid_child < 0)
 		return (1);
 	if (pid_child == 0)
-		if (ft_file_to_stdin(args, fd) == 1)
-			return (1);
+		ft_file_to_stdin(args, fd);
 	pid_parent = fork();
 	if (pid_parent < 0)
 		return (1);
 	if (pid_parent == 0)
-		if (ft_stdout_to_file(args, fd) == 1)
-			return (1);
+		ft_stdout_to_file(args, fd);
 	waitpid(pid_child, NULL, 1);
 	waitpid(pid_parent, NULL, 1);
 	return (0);
