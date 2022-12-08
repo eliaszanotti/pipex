@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 12:01:12 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/06 16:26:45 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/08 12:44:21 by ezanotti         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_file_to_stdin(t_args *args, int *fd)
 {
 	int	filein;
 
-	filein = open(args->file1, O_RDONLY, 0777);
+	filein = open(args->file1, O_RDONLY);
 	if (filein == -1)
 		return (-1);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
@@ -33,7 +33,7 @@ int	ft_stdout_to_file(t_args *args, int *fd)
 {
 	int	fileout;
 
-	fileout = open(args->file2, O_RDONLY | O_WRONLY | O_TRUNC, 0600);
+	fileout = open(args->file2, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fileout == -1)
 		return (-1);
 	if (dup2(fd[0], STDIN_FILENO) == -1)
