@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:15:46 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/11/22 15:54:14 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2022/12/22 18:23:58 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_putnbr_unsigned(unsigned int n)
 {
-	if (n >= 0 && n <= 9)
+	if (n <= 9)
 		return (ft_putchar(n + '0'));
 	return (ft_putnbr(n / 10) + ft_putchar((n % 10) + '0'));
 }
