@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:10:20 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 14:10:18 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 17:09:44 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,6 @@ static int	ft_get_here_doc(t_args *args, char **argv)
 	else
 		args->heredoc = 0;
 	return (0);
-}
-
-void	ft_ll(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		printf("[%s]", str[i++]);
-	printf("\n");
-}
-
-void	log_stack(char ***str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		ft_ll(str[i++]);
 }
 
 static int	ft_fill_stack(t_args *args, char **argv)
@@ -80,6 +61,5 @@ int	ft_struct_init(t_args *args, char **argv, char **envp)
 		return (1);
 	if (ft_open(args))
 		return (1);
-	log_stack(args->stack);
 	return (0);
 }

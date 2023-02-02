@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/02 14:27:34 by elias            ###   ########.fr        #
+#    Updated: 2023/02/02 16:53:03 by elias            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ S_PPX_LIST	= main.c				\
 	${D_UTILS}ft_putstr.c			\
 	${D_UTILS}ft_error.c			\
 	${D_UTILS}ft_open.c				\
+	${D_UTILS}ft_free.c				\
 	${D_GNL}get_next_line.c			\
 	${D_GNL}get_next_line_utils.c	\
 	ft_struct_init.c				\

@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 12:18:24 by elias             #+#    #+#             */
-/*   Updated: 2023/02/02 12:26:59 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 17:08:26 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ char	*ft_get_path(char *cmd)
 	{
 		good_path = ft_pathjoin(paths[i++], cmd);
 		if (access(good_path, F_OK) == 0)
-			return (good_path);
+			return (ft_free_str(paths), good_path);
+		free(good_path);
 	}
-	return (NULL);
+	return (ft_free_str(paths), NULL);
 }
