@@ -6,31 +6,74 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:10:20 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/27 16:34:40 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 11:51:40 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_args	*ft_struct_init(char **argv, char **envp)
+static int	ft_get_argv_size(char **argv)
 {
-	t_args	*args;
+	int	size;
 
-	args = malloc(sizeof(t_args));
-	if (!args)
-		return (NULL);
+	size = 0;
+	while (argv[size])
+		size++;
+	return (size);
+}
+
+static int	ft_get_here_doc(t_args *args, char **argv)
+{
+	if (!ft_strcmp(argv[1], "here_doc"))
+		args->heredoc = 1;
+	else
+		args->heredoc = 0;
+	return (0);
+}
+
+void ft_ll(char **str)
+{
+	int i = 0;
+	while (str[i])
+		printf("[%s]", str[i++]);
+	printf("\n");
+}
+
+void log_stack(char ***str)
+{
+	int i = 0;
+	while (str[i])
+		ft_ll(str[i++]);
+}
+
+static int	ft_fill_stack(t_args *args, char **argv)
+{
+	int	size;
+	int	i;
+	int	i_stack;
+	
+	size = ft_get_argv_size(argv);
+	args->stack = malloc(sizeof(char *) * (size + 1));
+	if (!args->stack)
+		return (ft_error(99));
+	i = -1;
+	args->infile = argv[++i];
+	i_stack = 0;
+	while (++i < size - 1)	
+		args->stack[i_stack++] = ft_split(argv[i], ' ');
+	args->stack[i_stack] = NULL;
+	return (0);
+}
+
+int	ft_struct_init(t_args *args, char **argv, char **envp)
+{
 	args->envp = envp;
-	args->file1 = argv[1];
-	args->cmd1 = argv[2];
-	args->cmd2 = argv[3];
-	args->file2 = argv[4];
-	args->tab_cmd1 = ft_split(args->cmd1, ' ');
-	args->tab_cmd2 = ft_split(args->cmd2, ' ');
-	if (!*args->tab_cmd1 || !*args->tab_cmd2)
-		return (NULL);
-	args->tab_cmd1[0] = ft_get_path(args, args->tab_cmd1[0]);
-	args->tab_cmd2[0] = ft_get_path(args, args->tab_cmd2[0]);
-	if (!args->tab_cmd1[0] || !args->tab_cmd2[0])
-		return (NULL);
-	return (args);
+	args->outfile = argv[ft_get_argv_size(argv)];
+	ft_get_here_doc(args, argv);
+	if (args->heredoc == 1 && ft_fill_stack(args, argv + 2))
+		return (1);
+	if (args->heredoc == 0 && ft_fill_stack(args, argv + 1))
+		return (1);
+	//log_stack(args->stack);
+	return (0);
 }

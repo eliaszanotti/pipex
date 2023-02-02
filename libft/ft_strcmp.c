@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 18:16:33 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/11/22 13:34:27 by ezanotti         ###   ########lyon.fr   */
+/*   Created: 2022/11/08 13:37:27 by ezanotti          #+#    #+#             */
+/*   Updated: 2022/12/27 18:40:02 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H 
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include <limits.h>
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned char	*copy_s1;
+	unsigned char	*copy_s2;
 
-int	ft_putchar(char c);
-int	ft_putstr(char *s);
-int	ft_putnbr(int n);
-int	ft_printaddress(void *address);
-int	ft_base(char *base, long int nbr);
-
-int	ft_printf(const char *s, ...);
-
-#endif
+	copy_s1 = (unsigned char *)s1;
+	copy_s2 = (unsigned char *)s2;
+	while (*copy_s1 && *copy_s2 && *copy_s1 == *copy_s2)
+	{
+		copy_s1++;
+		copy_s2++;
+	}
+	return (*copy_s1 - *copy_s2);
+}
