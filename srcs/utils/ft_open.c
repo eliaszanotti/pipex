@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:32 by elias             #+#    #+#             */
-/*   Updated: 2023/02/02 13:53:40 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 14:08:04 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ int	ft_open(t_args *args)
 		args->outfile = open(args->outfile_name, \
 			O_RDWR | O_TRUNC | O_CREAT, 0644);
 	}
-
-	if (args->infile == -1) 
-		return (ft_error(14)); // TODO 
+	else
+	{
+		args->outfile = open(args->outfile_name, \
+			O_RDWR | O_APPEND | O_CREAT, 0644);
+	}
+	if (args->infile == -1)
+		return (ft_error(10));
 	if (args->outfile == -1)
-		return (ft_error(15)); // TODO
+		return (ft_error(11));
 	return (0);
 }

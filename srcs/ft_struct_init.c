@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:10:20 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 13:54:20 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 14:10:18 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,21 @@ static int	ft_get_here_doc(t_args *args, char **argv)
 	return (0);
 }
 
-void ft_ll(char **str)
+void	ft_ll(char **str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 		printf("[%s]", str[i++]);
 	printf("\n");
 }
 
-void log_stack(char ***str)
+void	log_stack(char ***str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i])
 		ft_ll(str[i++]);
 }
@@ -51,7 +55,7 @@ static int	ft_fill_stack(t_args *args, char **argv)
 	int	size;
 	int	i;
 	int	i_stack;
-	
+
 	size = ft_get_argv_size(argv);
 	args->stack = malloc(sizeof(char *) * (size + 1));
 	if (!args->stack)
@@ -59,7 +63,7 @@ static int	ft_fill_stack(t_args *args, char **argv)
 	i = -1;
 	args->infile_name = argv[++i];
 	i_stack = 0;
-	while (++i < size - 1)	
+	while (++i < size - 1)
 		args->stack[i_stack++] = ft_split(argv[i], ' ');
 	args->stack[i_stack] = NULL;
 	return (0);
@@ -76,7 +80,6 @@ int	ft_struct_init(t_args *args, char **argv, char **envp)
 		return (1);
 	if (ft_open(args))
 		return (1);
-
 	log_stack(args->stack);
 	return (0);
 }
