@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/02 11:32:35 by elias            ###   ########.fr        #
+#    Updated: 2023/02/02 13:52:34 by elias            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ endif
 S_PPX_LIST	= main.c		\
 	${D_UTILS}ft_putstr.c	\
 	${D_UTILS}ft_error.c	\
-	ft_struct_init.c
+	${D_UTILS}ft_open.c		\
+	ft_struct_init.c		\
+	ft_pipe.c				\
+	ft_get_path.c			\
 
 OBJS = $(patsubst %.c, $(DIR_OBJS)%.o, $(S_PPX))
 S_PPX	= ${addprefix ${DIR_SRC}, ${S_PPX_LIST}}

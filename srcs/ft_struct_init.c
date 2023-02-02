@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 09:10:20 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 11:51:40 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 13:54:20 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	ft_fill_stack(t_args *args, char **argv)
 	if (!args->stack)
 		return (ft_error(99));
 	i = -1;
-	args->infile = argv[++i];
+	args->infile_name = argv[++i];
 	i_stack = 0;
 	while (++i < size - 1)	
 		args->stack[i_stack++] = ft_split(argv[i], ' ');
@@ -68,12 +68,15 @@ static int	ft_fill_stack(t_args *args, char **argv)
 int	ft_struct_init(t_args *args, char **argv, char **envp)
 {
 	args->envp = envp;
-	args->outfile = argv[ft_get_argv_size(argv)];
+	args->outfile_name = argv[ft_get_argv_size(argv) - 1];
 	ft_get_here_doc(args, argv);
 	if (args->heredoc == 1 && ft_fill_stack(args, argv + 2))
 		return (1);
 	if (args->heredoc == 0 && ft_fill_stack(args, argv + 1))
 		return (1);
-	//log_stack(args->stack);
+	if (ft_open(args))
+		return (1);
+
+	log_stack(args->stack);
 	return (0);
 }
