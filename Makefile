@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/02 16:53:03 by elias            ###   ########.fr        #
+#    Updated: 2023/02/02 17:48:18 by elias            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,26 +19,27 @@ ifeq ($(OS), Darwin)
 	PRINT = @printf
 endif
 
-S_PPX_LIST	= main.c				\
-	${D_UTILS}ft_putstr.c			\
-	${D_UTILS}ft_error.c			\
-	${D_UTILS}ft_open.c				\
-	${D_UTILS}ft_free.c				\
-	${D_GNL}get_next_line.c			\
-	${D_GNL}get_next_line_utils.c	\
-	ft_struct_init.c				\
-	ft_pipe.c						\
-	ft_get_path.c					\
+S_PPX_LIST	= main.c					\
+	ft_struct_init.c					\
+	ft_pipe.c							\
+	../${D_GNL}get_next_line.c			\
+	../${D_GNL}get_next_line_utils.c	\
+	${D_UTILS}ft_error.c				\
+	${D_UTILS}ft_free.c					\
+	${D_UTILS}ft_get_path.c				\
+	${D_UTILS}ft_open.c					\
+	${D_UTILS}ft_putstr.c				\
 
-OBJS = $(patsubst %.c, $(DIR_OBJS)%.o, $(S_PPX))
 S_PPX	= ${addprefix ${DIR_SRC}, ${S_PPX_LIST}}
+OBJS = $(patsubst %.c, $(DIR_OBJS)%.o, $(S_PPX))
 
 # DIRECTORIES
 DIR_OBJS = .objs/
 DIR_INCLUDE = includes/
+D_LIB	= libft/
+D_GNL	= gnl/
 DIR_SRC = srcs/
 D_UTILS	= utils/
-D_GNL	= gnl/
 
 # LIB
 LIBFT 	= -L ./libft -lft 
@@ -62,10 +63,12 @@ SUPPR	= \r\033[2K
 # COMPILATION
 all :		${NAME}
 
+bonus :		all
+
 ${DIR_OBJS}%.o: %.c	${DIR_INCLUDE}pipex.h Makefile
 			@mkdir -p $(shell dirname $@)
 			@${PRINT} "${YELLOW}${SUPPR}Creating ${NAME}'s objects : $@"
-			@${CC} ${CFLAGS} -I ./libft -I ./srcs/gnl -I ${DIR_INCLUDE} -c $< -o $@ 
+			@${CC} ${CFLAGS} -I ${D_LIB} -I ${D_GNL} -I ${DIR_INCLUDE} -c $< -o $@ 
 
 ${NAME}:	ascii lib ${OBJS}
 			@${PRINT} "${GREEN}${SUPPR}Creating ${NAME}'s objects : DONE\n"
