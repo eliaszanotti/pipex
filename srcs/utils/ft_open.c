@@ -6,15 +6,27 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:32 by elias             #+#    #+#             */
-/*   Updated: 2023/02/02 14:35:20 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/02 16:48:22 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	ft_heredoc(t_args *args)
+static int	ft_heredoc_loop(t_args *args, int file)
 {
 	char	*line;
+
+	write(1, "heredoc> ", 9);
+	line = get_next_line(STDIN_FILENO);
+	if (!ft_strncmp(args->infile_name, line, \
+		ft_strlen(args->infile_name) - 1))
+		return (free(line), 1);
+	write(file, line, ft_strlen(line));
+	return (free(line), 0);
+}
+
+static int	ft_heredoc(t_args *args)
+{
 	int		tmp_file;
 
 	tmp_file = open(".tmp", O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -22,23 +34,18 @@ static int	ft_heredoc(t_args *args)
 		return (ft_error(11));
 	while (1)
 	{
-		write(1, "heredoc> ", 9);
-		line = get_next_line(0);
-		if (!ft_strncmp(args->infile_name, line, \
-			ft_strlen(args->infile_name) - 1))
+		if (ft_heredoc_loop(args, tmp_file))
 			break ;
-		write(tmp_file, line, ft_strlen(line));
-		write(tmp_file, "\n", 1);
 	}
-
 	close(tmp_file);
 	args->infile = open(".tmp", O_RDONLY);
+	if (args->infile == -1)
+		return (ft_error(10));
 	return (0);
 }
 
 int	ft_open(t_args *args)
 {
-	//printf("in = %s, out = %s\n", args->infile_name, args->outfile_name);
 	if (!args->heredoc)
 	{
 		args->infile = open(args->infile_name, O_RDONLY);
