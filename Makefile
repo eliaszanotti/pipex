@@ -6,16 +6,13 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/02 17:48:18 by elias            ###   ########.fr        #
+#    Updated: 2023/02/03 14:32:58 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 OS	= $(shell uname -s)
 
 ifeq ($(OS), Linux)
-	PRINT = @echo -ne
-endif
-ifeq ($(OS), Darwin)
 	PRINT = @printf
 endif
 
