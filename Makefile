@@ -6,34 +6,47 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/06 13:06:37 by ezanotti         ###   ########.fr        #
+#    Updated: 2023/02/06 13:43:36 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-S_PPX_LIST	= ${D_SRC}main.c		\
-	${D_SRC}ft_struct_init.c		\
-	${D_GNL}get_next_line.c			\
-	${D_GNL}get_next_line_utils.c	\
-	${D_UTILS}ft_error.c			\
-	${D_UTILS}ft_free.c				\
-	${D_UTILS}ft_get_path.c			\
-	${D_UTILS}ft_open.c				\
-	${D_UTILS}ft_pipe.c				\
-	${D_UTILS}ft_putstr.c			\
+S_SRC	= ${D_SRC}main.c				\
+		${D_SRC}ft_struct_init.c		\
+		${D_GNL}get_next_line.c			\
+		${D_GNL}get_next_line_utils.c	\
+		${D_UTILS}ft_error.c			\
+		${D_UTILS}ft_free.c				\
+		${D_UTILS}ft_get_path.c			\
+		${D_UTILS}ft_open.c				\
+		${D_UTILS}ft_pipe.c				\
+		${D_UTILS}ft_putstr.c			\
 
-OBJS	= $(patsubst %.c, $(DIR_OBJS)%.o, $(S_PPX_LIST))
+S_BNS	= ${D_BNS}main.c				\
+		${D_BNS}ft_struct_init.c		\
+		${D_GNL}get_next_line.c			\
+		${D_GNL}get_next_line_utils.c	\
+		${D_UTILS}ft_error.c			\
+		${D_UTILS}ft_free.c				\
+		${D_UTILS}ft_get_path.c			\
+		${D_UTILS}ft_open.c				\
+		${D_UTILS}ft_pipe.c				\
+		${D_UTILS}ft_putstr.c			\
+
+O_SRC	= $(patsubst %.c, ${D_OBJS}%.o, $(S_SRC))
+O_BNS	= $(patsubst %.c, %.o, $(S_BNS))
 
 # VARIABLES
 NAME	= pipex
 CC		= cc
 
 # DIRECTORIES
-D_OBJS = .objs/
+D_OBJS	= .objs/
+D_GNL	= gnl/
 D_INC	= includes/
 D_LIB	= libft/
-D_GNL	= gnl/
-D_SRC	= mandatory/
 D_UTILS	= utils/
+D_SRC	= mandatory/
+D_BNS	= bonus/
 
 # FLAGS
 MAKEFLAGS += --no-print-directory
@@ -42,7 +55,7 @@ LIBFT 	= -L ./libft -lft
 
 # COMMANDS
 RM		= rm -rf
-PRINT = @printf
+PRINT	= @printf
 
 # COLORS
 RED		= \033[1;31m
@@ -55,18 +68,22 @@ SUPPR	= \r\033[2K
 
 all:	${NAME}
 
-bonus:	all
-
-${DIR_OBJS}%.o: %.c	${D_INC}pipex.h Makefile
+${D_OBJS}%.o: %.c	${D_INC}pipex.h Makefile
 		@mkdir -p $(shell dirname $@)
 		@${PRINT} "${YELLOW}${SUPPR}Creating ${NAME}'s objects : $@"
 		@${CC} ${CFLAGS} -I ${D_LIB} -I ${D_GNL} -I ${D_INC} -c $< -o $@ 
 
-${NAME}:ascii lib ${OBJS}
+${NAME}:ascii lib ${O_SRC}
 		@${PRINT} "${GREEN}${SUPPR}Creating ${NAME}'s objects : DONE\n"
 		@${PRINT} "${YELLOW}Compiling ${NAME}...${DEFAULT}"
-		@${CC} -fsanitize=address ${OBJS} -o ${NAME} ${LIBFT}
+		@${CC} -fsanitize=address ${O_SRC} -o ${NAME} ${LIBFT}
 		@${PRINT} "${GREEN}${SUPPR}Compiling ${NAME} : DONE ${DEFAULT}\n\n"
+
+bonus:	ascii lib ${O_BNS}
+		@${PRINT} "${GREEN}${SUPPR}Creating ${NAME}_bonus's objects : DONE\n"
+		@${PRINT} "${YELLOW}Compiling ${NAME}_bonus...${DEFAULT}"
+		@${CC} -fsanitize=address ${O_SRC} -o ${NAME}_bonus ${LIBFT}
+		@${PRINT} "${GREEN}${SUPPR}Compiling ${NAME}_bonus : DONE ${DEFAULT}\n\n"
 
 lib:
 		@make -C ./libft
@@ -82,7 +99,7 @@ fclean:	clean
 		@${PRINT} "${RED}Cleaning libft : DONE\n"
 		@${MAKE} fclean -C ./libft
 		@${PRINT} "${RED}Deleting executable : DONE${DEFAULT}\n\n"
-		@${RM} ${NAME} 
+		@${RM} ${NAME} ${NAME}_bonus
 
 re:		fclean all
 
@@ -100,6 +117,6 @@ ${CYAN}
 ${DEFAULT}
 endef
 
-export ASCII
+export	ASCII
 
-.PHONY : all re clean fclean lib ascii
+.PHONY:	all re clean fclean lib ascii bonus
