@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/06 13:46:39 by ezanotti         ###   ########.fr        #
+#    Updated: 2023/02/06 14:56:28 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,13 +76,13 @@ ${D_OBJS}%.o: %.c	${D_INC}pipex.h Makefile
 ${NAME}:ascii lib ${O_SRC}
 		@${PRINT} "${GREEN}${SUPPR}Creating ${NAME}'s objects : DONE\n"
 		@${PRINT} "${YELLOW}Compiling ${NAME}...${DEFAULT}"
-		@${CC} -fsanitize=address ${O_SRC} -o ${NAME} ${LIBFT}
+		@${CC} ${O_SRC} -o ${NAME} ${LIBFT}
 		@${PRINT} "${GREEN}${SUPPR}Compiling ${NAME} : DONE ${DEFAULT}\n\n"
 
 bonus:	ascii lib ${O_BNS}
 		@${PRINT} "${GREEN}${SUPPR}Creating ${NAME}_bonus's objects : DONE\n"
 		@${PRINT} "${YELLOW}Compiling ${NAME}_bonus...${DEFAULT}"
-		@${CC} -fsanitize=address ${O_SRC} -o ${NAME}_bonus ${LIBFT}
+		@${CC} ${O_BNS} -o ${NAME}_bonus ${LIBFT}
 		@${PRINT} "${GREEN}${SUPPR}Compiling ${NAME}_bonus : DONE ${DEFAULT}\n\n"
 
 lib:

@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 17:22:54 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/06 13:59:34 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_args	args;
 
-	if (argc < 5)
+	args.heredoc = 0;
+	if (argc != 5)
 		return (ft_error(2));
 	if (ft_struct_init(&args, argv, envp))
 		return (1);
@@ -40,8 +41,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (ft_pipe(&args))
 		return (1);
-	if (args.heredoc)
-		unlink(".tmp");
 	ft_free_stack(args.stack);
 	return (0);
 }
