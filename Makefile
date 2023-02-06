@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/02/06 13:43:36 by ezanotti         ###   ########.fr        #
+#    Updated: 2023/02/06 13:46:39 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,20 +33,11 @@ S_BNS	= ${D_BNS}main.c				\
 		${D_UTILS}ft_putstr.c			\
 
 O_SRC	= $(patsubst %.c, ${D_OBJS}%.o, $(S_SRC))
-O_BNS	= $(patsubst %.c, %.o, $(S_BNS))
+O_BNS	= $(patsubst %.c, ${D_OBJS}%.o, $(S_BNS))
 
 # VARIABLES
 NAME	= pipex
 CC		= cc
-
-# DIRECTORIES
-D_OBJS	= .objs/
-D_GNL	= gnl/
-D_INC	= includes/
-D_LIB	= libft/
-D_UTILS	= utils/
-D_SRC	= mandatory/
-D_BNS	= bonus/
 
 # FLAGS
 MAKEFLAGS += --no-print-directory
@@ -56,6 +47,15 @@ LIBFT 	= -L ./libft -lft
 # COMMANDS
 RM		= rm -rf
 PRINT	= @printf
+
+# DIRECTORIES
+D_OBJS	= .objs/
+D_GNL	= gnl/
+D_INC	= includes/
+D_LIB	= libft/
+D_UTILS	= utils/
+D_SRC	= mandatory/
+D_BNS	= bonus/
 
 # COLORS
 RED		= \033[1;31m
