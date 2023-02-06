@@ -6,18 +6,9 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 17:58:08 by ezanotti          #+#    #+#              #
-#    Updated: 2022/11/17 16:06:36 by ezanotti         ###   ########lyon.fr    #
+#    Updated: 2023/02/06 11:44:53 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-OS				= $(shell uname -s)
-
-ifeq ($(OS), Linux)
-	PRINT = @echo -ne
-endif
-ifeq ($(OS), Darwin)
-	PRINT = @printf
-endif
 
 # SOURCES
 S_LIB	= ft_isalpha.c ft_isdigit.c ft_isalnum.c 			\
@@ -44,6 +35,7 @@ NAME	= libft.a
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -rf
+PRINT	= @printf
 
 # COMPILATION
 all :		${NAME}
