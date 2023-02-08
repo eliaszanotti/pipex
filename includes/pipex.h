@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 16:52:44 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/08 16:01:49 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_open(t_args *args);
 
 int		ft_struct_init(t_args *args, char **argv, char **envp);
 int		ft_pipe(t_args *args);
-char	*ft_get_path(char *cmd);
+char	*ft_get_path(t_args *args, char *cmd);
 
 void	ft_free_str(char **str);
 void	ft_free_stack(char ***stack);
