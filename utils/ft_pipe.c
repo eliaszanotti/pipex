@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/08 16:07:10 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:49:58 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	ft_execute_child(t_args *args, char **command, int last)
 		return (ft_error(4));
 	else if (pid == 0 && ft_dup_and_exec(args, command, fd, last))
 		return (1);
-	waitpid(pid, NULL, 0);
+	waitpid(pid, NULL, 1);
 	close(fd[1]);
 	args->infile = STDIN_FILENO;
 	args->outfile = STDOUT_FILENO;

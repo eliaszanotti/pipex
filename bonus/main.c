@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/02 17:22:54 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/01 11:52:18 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_parse_args(t_args *args)
 	i = 0;
 	while (args->stack[i])
 	{
-		path = ft_get_path(args->stack[i++][0]);
+		path = ft_get_path(args, args->stack[i++][0]);
 		if (!path)
 			return (free(path), ft_free_stack(args->stack), ft_error(7));
 		free(path);
