@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 08:07:47 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/11/24 08:12:52 by ezanotti         ###   ########lyon.fr   */
+/*   Updated: 2023/03/08 13:49:06 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*get_next_line(int fd);
+# include "libft.h"
+
+char	*get_next_line(int fd, char *end_of_file);
 
 size_t	ft_strlen(const char *str);
 void	ft_bzero(void *b, size_t n);

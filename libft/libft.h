@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:37:49 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/01/04 14:25:28 by elias            ###   ########.fr       */
+/*   Updated: 2023/02/16 15:10:39 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+typedef struct s_ilst
+{
+	int				content;
+	struct s_ilst	*next;
+}	t_ilst;
+
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -35,6 +41,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	*ft_strcat(char *dst, char *src);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
@@ -69,5 +76,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+t_ilst	*ft_ilstnew(int content);
+void	ft_ilstadd_front(t_ilst **lst, t_ilst *new);
+int		ft_ilstsize(t_ilst *lst);
+t_ilst	*ft_ilstlast(t_ilst *lst);
+void	ft_ilstadd_back(t_ilst **lst, t_ilst *new);
 
 #endif

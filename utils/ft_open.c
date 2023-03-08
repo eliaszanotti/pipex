@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:32 by elias             #+#    #+#             */
-/*   Updated: 2023/02/02 16:48:22 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/08 15:03:30 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 static int	ft_heredoc_loop(t_args *args, int file)
 {
 	char	*line;
+	size_t	len;
 
 	write(1, "heredoc> ", 9);
-	line = get_next_line(STDIN_FILENO);
-	if (!ft_strncmp(args->infile_name, line, \
-		ft_strlen(args->infile_name) - 1))
+	line = get_next_line(STDIN_FILENO, args->infile_name);
+	len = ft_strlen(line) - 1;
+	if (!ft_strncmp(args->infile_name, line, len) && \
+		ft_strlen(args->infile_name) == len)
 		return (free(line), 1);
 	write(file, line, ft_strlen(line));
 	return (free(line), 0);

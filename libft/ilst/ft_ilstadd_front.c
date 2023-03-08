@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 13:37:27 by ezanotti          #+#    #+#             */
-/*   Updated: 2022/12/27 18:40:02 by elias            ###   ########.fr       */
+/*   Created: 2022/11/11 12:51:08 by ezanotti          #+#    #+#             */
+/*   Updated: 2023/02/16 14:51:48 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	ft_ilstadd_front(t_ilst **lst, t_ilst *new)
 {
-	unsigned char	*copy_s1;
-	unsigned char	*copy_s2;
-
-	copy_s1 = (unsigned char *)s1;
-	copy_s2 = (unsigned char *)s2;
-	while (*copy_s1 && *copy_s2 && *copy_s1 == *copy_s2)
-	{
-		copy_s1++;
-		copy_s2++;
-	}
-	return (*copy_s1 - *copy_s2);
+	if (!lst)
+		return ;
+	if (*lst)
+		new->next = *lst;
+	*lst = new;
 }

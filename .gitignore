@@ -1,4 +1,5 @@
 *.o
 *.swp
 pipex
+pipex_bonus
 libft.a
