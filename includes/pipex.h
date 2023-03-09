@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/02/08 16:01:49 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:43:39 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_args
 	char	**envp;
 	char	*infile_name;
 	char	*outfile_name;
+	pid_t	*pid_tab;
 	int		infile;
 	int		outfile;
 	int		fdd;
