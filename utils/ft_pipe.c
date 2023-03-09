@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/09 14:27:58 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:29:32 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ft_pipe(t_args *args)
 			return (free(args->pid_tab), ft_free_stack(args->stack), 1);
 	if (ft_execute_child(args, args->stack[i], 1))
 		return (free(args->pid_tab), ft_free_stack(args->stack), 1);
-	while (size >= 0)
-		waitpid(args->pid_tab[size--], NULL, 0);
+	while (--size >= 0)
+		waitpid(args->pid_tab[size], NULL, 0);
 	return (free(args->pid_tab), 0);
 }
