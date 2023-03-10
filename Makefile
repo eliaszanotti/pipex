@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/03/01 12:03:03 by ezanotti         ###   ########.fr        #
+#    Updated: 2023/03/10 12:00:00 by ezanotti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ SUPPR	= \r\033[2K
 
 all:	${NAME}
 
-${D_OBJS}%.o: %.c	${D_INC}pipex.h Makefile
+${D_OBJS}%.o: %.c	${D_INC}get_next_line.h ${D_INC}pipex.h Makefile
 		@mkdir -p $(shell dirname $@)
 		@${PRINT} "${YELLOW}${SUPPR}Creating ${NAME}'s objects : $@"
 		@${CC} ${CFLAGS} -I ${D_LIB} -I ${D_GNL} -I ${D_INC} -c $< -o $@ 
