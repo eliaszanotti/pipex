@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/03/15 15:44:02 by elias            ###   ########.fr        #
+#    Updated: 2023/03/15 15:50:02 by elias            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ CC		= cc
 
 # FLAGS
 MAKEFLAGS += --no-print-directory
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= -Wall -Wextra -Werror
 LIBFT 	= -L ./libft -lft 
 
 # COMMANDS
