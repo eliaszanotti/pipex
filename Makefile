@@ -6,7 +6,7 @@
 #    By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/27 14:08:57 by elias             #+#    #+#              #
-#    Updated: 2023/03/10 12:00:00 by ezanotti         ###   ########.fr        #
+#    Updated: 2023/03/15 15:44:02 by elias            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,11 @@ S_SRC	= ${D_SRC}main.c				\
 		${D_UTILS}ft_error.c			\
 		${D_UTILS}ft_free.c				\
 		${D_UTILS}ft_get_path.c			\
+		${D_UTILS}ft_get_stack_size.c	\
 		${D_UTILS}ft_open.c				\
 		${D_UTILS}ft_pipe.c				\
 		${D_UTILS}ft_putstr.c			\
+		${D_UTILS}ft_waits.c			\
 
 S_BNS	= ${D_BNS}main.c				\
 		${D_BNS}ft_struct_init.c		\
@@ -28,9 +30,11 @@ S_BNS	= ${D_BNS}main.c				\
 		${D_UTILS}ft_error.c			\
 		${D_UTILS}ft_free.c				\
 		${D_UTILS}ft_get_path.c			\
+		${D_UTILS}ft_get_stack_size.c	\
 		${D_UTILS}ft_open.c				\
 		${D_UTILS}ft_pipe.c				\
 		${D_UTILS}ft_putstr.c			\
+		${D_UTILS}ft_waits.c			\
 
 O_SRC	= $(patsubst %.c, ${D_OBJS}%.o, $(S_SRC))
 O_BNS	= $(patsubst %.c, ${D_OBJS}%.o, $(S_BNS))
@@ -41,7 +45,7 @@ CC		= cc
 
 # FLAGS
 MAKEFLAGS += --no-print-directory
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g3
 LIBFT 	= -L ./libft -lft 
 
 # COMMANDS

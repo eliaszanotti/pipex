@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/09 13:43:39 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:47:11 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_args
 	char	*infile_name;
 	char	*outfile_name;
 	pid_t	*pid_tab;
+	int		*close_tab;
 	int		infile;
 	int		outfile;
 	int		fdd;
@@ -44,5 +45,10 @@ char	*ft_get_path(t_args *args, char *cmd);
 
 void	ft_free_str(char **str);
 void	ft_free_stack(char ***stack);
+
+int		ft_add_pid(t_args *args, pid_t pid);
+int		ft_wait_and_close(t_args *args);
+
+int		ft_get_stack_size(char ***stack);
 
 #endif

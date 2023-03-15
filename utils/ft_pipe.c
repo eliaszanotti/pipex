@@ -6,35 +6,11 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/09 17:29:32 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:46:50 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static int	ft_get_stack_size(char ***stack)
-{
-	int	size;
-
-	size = 0;
-	while (stack[size])
-		size++;
-	return (size);
-}
-
-static int	ft_add_pid(t_args *args, pid_t pid)
-{
-	int	i;
-	int	size;
-
-	size = ft_get_stack_size(args->stack);
-	i = 0;
-	while (args->pid_tab[i] != 0 && i < size - 1)
-		i++;
-	if (i < size)
-		args->pid_tab[i] = pid;
-	return (0);
-}
 
 static int	ft_dup_and_exec(t_args *args, char **command, int fd[2], int last)
 {
@@ -63,12 +39,22 @@ static int	ft_execute_child(t_args *args, char **command, int last)
 		return (ft_error(4));
 	else if (pid == 0 && ft_dup_and_exec(args, command, fd, last))
 		return (1);
-	if (ft_add_pid(args, pid))
-		return (1);
+	ft_add_pid(args, pid);
 	close(fd[1]);
 	args->infile = STDIN_FILENO;
 	args->outfile = STDOUT_FILENO;
 	args->fdd = fd[0];
+	return (0);
+}
+
+static int	ft_init_tab(t_args *args)
+{
+	args->pid_tab = malloc(sizeof(pid_t) * ft_get_stack_size(args->stack));
+	if (!args->pid_tab)
+		return (free(args->pid_tab), 1);
+	args->close_tab = malloc(sizeof(int) * ft_get_stack_size(args->stack));
+	if (!args->close_tab)
+		return (free(args->pid_tab), free(args->close_tab), 1);
 	return (0);
 }
 
@@ -83,19 +69,18 @@ int	ft_pipe(t_args *args)
 		return (ft_free_stack(args->stack), ft_error(5));
 	if (args->outfile && dup2(args->outfile, STDOUT_FILENO) == -1)
 		return (ft_free_stack(args->stack), ft_error(5));
-	args->pid_tab = malloc(sizeof(pid_t) * size);
-	if (!args->pid_tab)
+	if (ft_init_tab(args))
 		return (ft_free_stack(args->stack), ft_error(99));
 	i = 0;
 	while (i < size)
-		args->pid_tab[i++] = 0;
+		args->pid_tab[i++] = -1;
 	i = -1;
 	while (++i < size - 1)
 		if (ft_execute_child(args, args->stack[i], 0))
 			return (free(args->pid_tab), ft_free_stack(args->stack), 1);
 	if (ft_execute_child(args, args->stack[i], 1))
 		return (free(args->pid_tab), ft_free_stack(args->stack), 1);
-	while (--size >= 0)
-		waitpid(args->pid_tab[size], NULL, 0);
-	return (free(args->pid_tab), 0);
+	if (ft_wait_and_close(args))
+		return (1);
+	return (free(args->pid_tab), free(args->close_tab), 0);
 }
