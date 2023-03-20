@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:49:23 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/01 11:52:18 by ezanotti         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:28:27 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (ft_pipe(&args))
 		return (1);
-	if (args.heredoc)
-		unlink(".tmp");
 	ft_free_stack(args.stack);
 	return (0);
 }
