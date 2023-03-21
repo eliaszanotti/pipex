@@ -6,11 +6,18 @@
 /*   By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:14:22 by elias             #+#    #+#             */
-/*   Updated: 2023/03/21 15:14:20 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:29:27 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	ft_error_command(char *path)
+{
+	ft_printf_fd("\e[1;31m[ERROR]\e[0m ", STDERR_FILENO);
+	ft_printf_fd("%s : Command not found\n", STDERR_FILENO, path);
+	return (1);
+}
 
 int	ft_error(int error_code)
 {
@@ -24,8 +31,6 @@ int	ft_error(int error_code)
 		ft_printf_fd("Failed to create fork\n", STDERR_FILENO);
 	else if (error_code == 5)
 		ft_printf_fd("Failed to duplicate fd (dup2 error)\n", STDERR_FILENO);
-	else if (error_code == 6)
-		ft_printf_fd("Command not found\n", STDERR_FILENO);
 	else if (error_code == 10)
 		ft_printf_fd("Can't open file\n", STDERR_FILENO);
 	else if (error_code == 11)

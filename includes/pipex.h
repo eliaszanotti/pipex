@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 15:51:08 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/15 15:47:11 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:30:02 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_args
 }	t_args;
 
 void	ft_putstr(char *str);
+int		ft_error_command(char *path);
 int		ft_error(int error_code);
 int		ft_open(t_args *args);
 

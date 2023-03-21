@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/21 15:13:34 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:31:09 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_dup_and_exec(t_args *args, char **command, int fd[2], int last)
 	close(fd[0]);
 	path = ft_get_path(args, command[0]);
 	if (!path)
-		exit(ft_error(6));
+		exit(ft_error_command(command[0]));
 	if (execve(path, command, args->envp) == -1)
 		return (free(path), ft_error(6));
 	return (0);
