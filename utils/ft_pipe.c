@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/21 15:31:09 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:51:36 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	ft_pipe(t_args *args)
 	int	i;
 
 	size = ft_get_stack_size(args->stack);
-	args->fdd = 0;
-	if (args->infile && dup2(args->infile, STDIN_FILENO) == -1)
-		return (ft_free_stack(args->stack), ft_error(5));
 	if (args->outfile && dup2(args->outfile, STDOUT_FILENO) == -1)
 		return (ft_free_stack(args->stack), ft_error(5));
 	if (ft_init_tab(args))
@@ -77,6 +74,9 @@ int	ft_pipe(t_args *args)
 	while (i < size)
 		args->pid_tab[i++] = -1;
 	i = -1;
+	if (args->infile == 1)
+		i = 0;
+	args->fdd = args->infile;
 	while (++i < size - 1)
 		if (ft_execute_child(args, args->stack[i], 0))
 			return (free(args->pid_tab), ft_free_stack(args->stack), 1);

@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:32 by elias             #+#    #+#             */
-/*   Updated: 2023/03/21 12:09:41 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:52:21 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int	ft_open(t_args *args)
 			O_RDWR | O_APPEND | O_CREAT, 0644);
 	}
 	if (args->infile == -1)
-		return (ft_free_stack(args->stack), ft_error(10));
+	{
+		args->infile = 1;
+		ft_error(10);
+	}
 	if (args->outfile == -1)
 		return (ft_free_stack(args->stack), ft_error(11));
 	return (0);
