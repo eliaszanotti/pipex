@@ -6,7 +6,7 @@
 /*   By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:14:22 by elias             #+#    #+#             */
-/*   Updated: 2023/03/21 13:38:43 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 15:14:20 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int	ft_error(int error_code)
 	if (error_code)
 		ft_printf_fd("\e[1;31m[ERROR:%d]\e[0m ", STDERR_FILENO, error_code);
 	if (error_code == 2)
-		printf("Wrong amount of arguments\n");
+		ft_printf_fd("Wrong amount of arguments\n", STDERR_FILENO);
 	else if (error_code == 3)
-		printf("Failed to pipe fd\n");
+		ft_printf_fd("Failed to pipe fd\n", STDERR_FILENO);
 	else if (error_code == 4)
-		printf("Failed to create fork\n");
+		ft_printf_fd("Failed to create fork\n", STDERR_FILENO);
 	else if (error_code == 5)
-		printf("Failed to duplicate fd (dup2 error)\n");
+		ft_printf_fd("Failed to duplicate fd (dup2 error)\n", STDERR_FILENO);
 	else if (error_code == 6)
-		printf("Command not found\n");
+		ft_printf_fd("Command not found\n", STDERR_FILENO);
 	else if (error_code == 10)
-		printf("Can't open file\n");
+		ft_printf_fd("Can't open file\n", STDERR_FILENO);
 	else if (error_code == 11)
-		printf("Can't create file\n");
+		ft_printf_fd("Can't create file\n", STDERR_FILENO);
 	else if (error_code == 99)
-		printf("Malloc cannot be created\n");
+		ft_printf_fd("Malloc cannot be created\n", STDERR_FILENO);
 	else
-		printf("Undefined\n");
+		ft_printf_fd("Undefined\n", STDERR_FILENO);
 	return (1);
 }
