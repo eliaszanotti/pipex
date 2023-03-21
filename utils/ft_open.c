@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 13:27:32 by elias             #+#    #+#             */
-/*   Updated: 2023/03/20 13:26:03 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/21 12:09:41 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_heredoc(t_args *args)
 	size_t	len;
 
 	if (pipe(fd) == -1)
-		return (1);
+		return (ft_error(3));
 	while (1)
 	{
 		write(1, "heredoc> ", 9);
