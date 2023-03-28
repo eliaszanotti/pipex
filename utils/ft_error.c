@@ -6,7 +6,7 @@
 /*   By: tgiraudo <tgiraudo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:14:22 by elias             #+#    #+#             */
-/*   Updated: 2023/03/22 19:15:34 by elias            ###   ########.fr       */
+/*   Updated: 2023/03/28 11:30:22 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	ft_error_command(char *path)
 {
-	ft_printf_fd("\e[1;31m[ERROR]\e[0m ", STDERR_FILENO);
-	ft_printf_fd("%s : Command not found\n", STDERR_FILENO, path);
+	write(2, "\e[1;31m[ERROR]\e[0m ", 20);
+	write(2, path, ft_strlen(path));
+	write(2, ": Command not found\n", 21);
 	free(path);
 	return (1);
 }
