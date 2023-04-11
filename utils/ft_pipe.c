@@ -6,7 +6,7 @@
 /*   By: ezanotti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:51:36 by ezanotti          #+#    #+#             */
-/*   Updated: 2023/03/22 19:15:11 by elias            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:31:14 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,22 @@ static int	ft_execute_child(t_args *args, char **command, int last)
 
 static int	ft_init_tab(t_args *args)
 {
-	args->pid_tab = malloc(sizeof(pid_t) * ft_get_stack_size(args->stack));
+	int	size;
+	int	i;
+
+	size = ft_get_stack_size(args->stack);
+	args->pid_tab = malloc(sizeof(pid_t) * size);
 	if (!args->pid_tab)
 		return (free(args->pid_tab), 1);
-	args->close_tab = malloc(sizeof(int) * ft_get_stack_size(args->stack));
+	args->close_tab = malloc(sizeof(int) * size);
 	if (!args->close_tab)
 		return (free(args->pid_tab), free(args->close_tab), 1);
+	i = 0;
+	while (i < size)
+	{
+		args->pid_tab[i] = -1;
+		args->close_tab[i++] = 1;
+	}
 	return (0);
 }
 
@@ -76,9 +86,6 @@ int	ft_pipe(t_args *args)
 		return (ft_free_stack(args->stack), ft_error(5));
 	if (ft_init_tab(args))
 		return (ft_free_stack(args->stack), ft_error(99));
-	i = 0;
-	while (i < size)
-		args->pid_tab[i++] = -1;
 	i = -1;
 	if (args->infile == 1)
 		i = 0;

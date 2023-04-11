@@ -6,7 +6,7 @@
 /*   By: elias <zanotti.elias@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:16:06 by elias             #+#    #+#             */
-/*   Updated: 2023/03/15 15:49:36 by elias            ###   ########.fr       */
+/*   Updated: 2023/04/11 14:30:49 by ezanotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	ft_wait_and_close(t_args *args)
 	while (--size >= 0)
 	{
 		waitpid(args->pid_tab[size], NULL, 0);
-		close(args->close_tab[size]);
+		if (args->close_tab[size] != 1)
+			close(args->close_tab[size]);
 	}
 	return (0);
 }
